@@ -1,0 +1,122 @@
+{
+    "dataset": [{
+        "id": "2.16.840.1.113883.3.1937.777.28.1.1",
+        "effectiveDate": "2018-10-31T00:00:00",
+        "statusCode": "draft",
+        "versionLabel": "1",
+        "prefix": "prsb03-",
+        "transactionId": "2.16.840.1.113883.3.1937.777.28.4.159",
+        "transactionEffectiveDate": "2020-09-07T16:04:15",
+        "transactionStatusCode": "draft",
+        "transactionVersionLabel": "2",
+        "transactionType": "stationary",
+        "transactionIddisplay": "prsb03-transaction-159",
+        "shortName": "core_information_standard",
+        "iddisplay": "prsb03-dataset-1",
+        "url": "http://art-decor.org/decor/services/",
+        "ident": "prsb03-",
+        "name": [
+            { "language": "en-GB", "#text": "Core information standard" }
+        ],
+        "desc": [{ "language": "en-GB" }],
+        "concept": [{
+            "id": "2.16.840.1.113883.3.1937.777.28.2.10868",
+            "effectiveDate": "2019-03-27T19:02:25",
+            "statusCode": "draft",
+            "type": "group",
+            "minimumMultiplicity": "1",
+            "maximumMultiplicity": "1",
+            "conformance": "M",
+            "isMandatory": "true",
+            "iddisplay": "prsb03-dataelement-10868",
+            "shortName": "person_demographics",
+            "implementation": [{ "shortName": "person_demographics" }],
+            "context": [{
+                "language": "en-GB",
+                "#text": "The mandatory information in this section is person’s name, date of birth and address. There can be multiple addresses associated with a person including temporary and correspondence addresses. These are stored on the PDS. &lt;br clear=\"none\"/&gt;\n                &lt;br clear=\"none\"/&gt;Note that the Individual requirements section includes specific elements for accessible information requirements to support communication. It is recognised that some of the elements in this section are currently shared in a more granular way than currently defined in this information model. PRSB intends to address this in a later release of the information model."
+            }],
+            "name": [
+                { "language": "en-GB", "#text": "Person demographics" }
+            ],
+            "desc": [{
+                "language": "en-GB",
+                "#text": "The person's details and contact information."
+            }],
+            "concept": [{
+                "id": "2.16.840.1.113883.3.1937.777.28.2.10869",
+                "effectiveDate": "2019-03-27T19:05:18",
+                "statusCode": "draft",
+                "versionLabel": "1",
+                "type": "group",
+                "minimumMultiplicity": "1",
+                "maximumMultiplicity": "1",
+                "conformance": "M",
+                "isMandatory": "true",
+                "iddisplay": "prsb03-dataelement-10869",
+                "shortName": "person_name",
+                "implementation": [{ "shortName": "person_name" }],
+                "name": [
+                    { "language": "en-GB", "#text": "Person name" }
+                ],
+                "desc": [{
+                    "language": "en-GB",
+                    "#text": "Details of the person's name"
+                }],
+                "relationship": [{
+                    "type": "SPEC",
+                    "ref": "2.16.840.1.113883.3.1937.777.28.2.10016",
+                    "flexibility": "2018-10-31T00:00:00",
+                    "prefix": "prsb03-",
+                    "datasetId": "2.16.840.1.113883.3.1937.777.28.1.1",
+                    "datasetEffectiveDate": "2018-10-31T00:00:00",
+                    "datasetStatusCode": "draft",
+                    "datasetVersionLabel": "1",
+                    "iType": "item",
+                    "iStatusCode": "cancelled",
+                    "iEffectiveDate": "2018-10-31T00:00:00",
+                    "iVersionLabel": "0.1",
+                    "refdisplay": "prsb03-dataelement-10016",
+                    "name": [{
+                        "language": "en-GB",
+                        "#text": "Patient name"
+                    }]
+                }],
+                "concept": [{
+                    "id": "2.16.840.1.113883.3.1937.777.28.2.13799",
+                    "effectiveDate": "2020-11-09T16:09:39",
+                    "statusCode": "draft",
+                    "type": "item",
+                    "minimumMultiplicity": "1",
+                    "maximumMultiplicity": "*",
+                    "conformance": "M",
+                    "isMandatory": "true",
+                    "iddisplay": "prsb03-dataelement-13799",
+                    "shortName": "person_first_name",
+                    "implementation": [
+                        { "shortName": "person_first_name" }
+                    ],
+                    "name": [{
+                        "language": "en-GB",
+                        "#text": "Person first name"
+                    }],
+                    "desc": [{
+                        "language": "en-GB",
+                        "#text": "The first name(s) of the person. This includes middle names."
+                    }],
+                    "rationale": [{
+                        "language": "en-GB",
+                        "#text": "Patient.name.given"
+                    }],
+                    "operationalization": [{
+                        "language": "en-GB",
+                        "#text": "NHS data dictionary :- &lt;a href=\"https://datadictionary.nhs.uk/data_elements/person_given_name.html?hl=person%2Cgiven%2Cname\" target=\"\" title=\"\"&gt;Person given name&lt;/a&gt;\n                    "
+                    }],
+                    "valueDomain": [{
+                        "type": "string",
+                        "property": [{ "maxLength": "35" }]
+                    }]
+                }]
+            }]
+        }]
+    }]
+}

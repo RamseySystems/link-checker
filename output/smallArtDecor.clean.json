@@ -1,0 +1,49 @@
+{
+    "dataset": [
+        {
+            "name": "core_information_standard",
+            "concept": [
+                {
+                    "type": "group",
+                    "minimumMultiplicity": "1",
+                    "maximumMultiplicity": "1",
+                    "mro": "M",
+                    "name": "person_demographics",
+                    "implamentationGuidance": "The mandatory information in this section is person\u2019s name, date of birth and address. There can be multiple addresses associated with a person including temporary and correspondence addresses. These are stored on the PDS. <br clear=\"none\"/>\n                <br clear=\"none\"/>Note that the Individual requirements section includes specific elements for accessible information requirements to support communication. It is recognised that some of the elements in this section are currently shared in a more granular way than currently defined in this information model. PRSB intends to address this in a later release of the information model.",
+                    "description": "The person's details and contact information.",
+                    "concept": [
+                        {
+                            "type": "group",
+                            "minimumMultiplicity": "1",
+                            "maximumMultiplicity": "1",
+                            "mro": "M",
+                            "name": "person_name",
+                            "description": "Details of the person's name",
+                            "concept": [
+                                {
+                                    "type": "item",
+                                    "minimumMultiplicity": "1",
+                                    "maximumMultiplicity": "*",
+                                    "mro": "M",
+                                    "name": "person_first_name",
+                                    "description": "The first name(s) of the person. This includes middle names.",
+                                    "valueSets": "NHS data dictionary :- <a href=\"https://datadictionary.nhs.uk/data_elements/person_given_name.html?hl=person%2Cgiven%2Cname\" target=\"\" title=\"\">Person given name</a>\n                    ",
+                                    "valueDomain": [
+                                        {
+                                            "type": "string",
+                                            "property": [
+                                                {
+                                                    "maxLength": "35"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
