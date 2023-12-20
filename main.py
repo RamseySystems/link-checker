@@ -1,4 +1,5 @@
 from reformatter import reformat as fn
+from reformatter import config
 import os
 import json
 
@@ -17,7 +18,7 @@ def main():
             data = json.load(f)
             
         clean_json = fn.filter(data, True)
-        links = fn.extract_links(clean_json)
+        links = fn.extract_links(clean_json, config.expressions)
         invalid_links = fn.check_links(links)
         
         save_path = f'{OUTPUT_DIR}/{file_name}.clean.json'
