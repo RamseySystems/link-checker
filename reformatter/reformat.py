@@ -84,17 +84,6 @@ def validate(schema: dict, instance: dict):
 
 
 def extract_links(data, patterns, path=''):
-    """
-    Recursively extracts links from a nested JSON structure based on given regex patterns.
-
-    Parameters:
-    data (dict/list): The JSON data.
-    patterns (list): List of regex patterns to match links.
-    path (str): The current path in the JSON structure.
-
-    Returns:
-    dict: A dictionary where the keys are paths to the links, and the values are the links themselves.
-    """
     links = {}
     if isinstance(data, dict):
         for key, value in data.items():
@@ -103,7 +92,11 @@ def extract_links(data, patterns, path=''):
                 for pattern in patterns:
                     match = re.search(pattern, value)
                     if match:
-                        links[new_path] = match.group(1)
+                        try:
+                            links[new_path] = match.group(1)
+                        except IndexError:
+                            # Handle the case where the group does not exist
+                            print(f"No match found for pattern {pattern} in {value}")
             else:
                 links.update(extract_links(value, patterns, new_path))
     elif isinstance(data, list):
@@ -112,6 +105,7 @@ def extract_links(data, patterns, path=''):
             links.update(extract_links(item, patterns, new_path))
 
     return links
+
 
 def check_links(links):
     """

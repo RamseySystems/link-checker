@@ -5,6 +5,9 @@ from copy import copy
 import openpyxl
 from jsonschema import validate
 from jsonschema import Draft202012Validator
+import smtplib
+from jinja2 import Template, Environment, FileSystemLoader
+from email.message import EmailMessage
 
 def save_obj_to_file(obj, save_path):
     with open(save_path, "w", encoding="utf-8") as f:
@@ -148,3 +151,29 @@ def validate_contents(node, ws):
     elif isinstance(node, list):
         for item in node:
             validate_contents(item, ws)
+
+def send_email(subject, content, to_email, from_email, password):
+
+    # Create the email message
+    msg = EmailMessage()
+    msg.set_content(content, subtype='html')
+    msg['Subject'] = subject
+    msg['From'] = from_email
+    msg['To'] = to_email
+
+    # Connect to the SMTP server
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(from_email, password)
+        smtp.send_message(msg)
+
+
+# a function to render a jinja template
+def render_email(template_path, template_name, content, text_body):
+    # create jinja environment
+    env = Environment(loader=FileSystemLoader(template_path))
+
+    # load template
+    template = env.get_template(template_name)
+
+    # render template
+    return template.render(standards=content)
