@@ -109,7 +109,7 @@
                     }],
                     "operationalization": [{
                         "language": "en-GB",
-                        "#text": "NHS data dictionary :- &lt;a href=\"https://datadictionary.nhs.uk/data_elements/person_given_name.html?hl=person%2Cgiven%2Cname\" target=\"\" title=\"\"&gt;Person given name&lt;/a&gt;\n                    "
+                        "#text": "NHS data dictionary :- &lt;a href=\"https://datadiconary.nhs.uk/data_elements/person_given_name.html?hl=person%2Cgiven%2Cname\" target=\"\" title=\"\"&gt;Person given name&lt;/a&gt;\n                    "
                     }],
                     "valueDomain": [{
                         "type": "string",

@@ -27,7 +27,7 @@
                                     "mro": "M",
                                     "name": "person_first_name",
                                     "description": "The first name(s) of the person. This includes middle names.",
-                                    "valueSets": "NHS data dictionary :- <a href=\"https://datadictionary.nhs.uk/data_elements/person_given_name.html?hl=person%2Cgiven%2Cname\" target=\"\" title=\"\">Person given name</a>\n                    ",
+                                    "valueSets": "NHS data dictionary :- <a href=\"https://datadiconary.nhs.uk/data_elements/person_given_name.html?hl=person%2Cgiven%2Cname\" target=\"\" title=\"\">Person given name</a>\n                    ",
                                     "valueDomain": [
                                         {
                                             "type": "string",

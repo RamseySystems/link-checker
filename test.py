@@ -1,24 +1,29 @@
-from reformatter import functions as fn
+import json
 
-standards = {
-    'Standard Name': {
-        'path.to.node': 'http://www.someurl.com',
-        'another.path': 'http://www.anotherURL.com'
-    },
-    'Another Standard': {
-        'path.to.url': 'http://www.theurl.com',
-        'path3.to.pathy': 'http://www.rtg.cod'
-    }
-}
+def extract_paths(data):
+    def extract_name_from_list(name_list):
+        return name_list[0]["#text"] if name_list else ""
 
-email = fn.render_email('/Users/frankiehadwick/Documents/Link Checker/reformatter/templates',
-                        'email.jinja', 
-                        standards,
-                        'Failed URL\'s')
+    def recurse(concept, path):
+        name = extract_name_from_list(concept.get("name", []))
+        new_path = path + [name]
+        if "concept" in concept:
+            return sum([recurse(sub_concept, new_path) for sub_concept in concept["concept"]], [])
+        else:
+            return [new_path]
+
+    paths = []
+    for dataset in data.get("dataset", []):
+        dataset_name = extract_name_from_list(dataset.get("name", []))
+        for concept in dataset.get("concept", []):
+            paths.extend(recurse(concept, [dataset_name]))
+
+    return paths
 
 
-fn.send_email('Testing',
-              email,
-              'frankiepaulhadwick@gmail.com',
-              'frankie@ramseysystems.co.uk',
-              'addt dubr qlnc zcdv')
+data = json.load(open("raw_art_decor/fullArtDecor.json"))
+
+paths = extract_paths(data)
+
+for path in paths:
+    print(".".join(path))

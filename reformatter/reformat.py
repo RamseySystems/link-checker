@@ -84,28 +84,34 @@ def validate(schema: dict, instance: dict):
 
 
 def extract_links(data, patterns, path=''):
+    def get_readable_name(d):
+        # Returns the 'name' from a dictionary, if available
+        return d.get('name') if isinstance(d, dict) and 'name' in d else None
+
     links = {}
     if isinstance(data, dict):
         for key, value in data.items():
-            new_path = f"{path}.{key}" if path else key
+            readable_name = get_readable_name(value)
+            new_path = f"{path} > {readable_name}" if path else readable_name if readable_name else key
+
             if isinstance(value, str):
                 for pattern in patterns:
                     match = re.search(pattern, value)
                     if match:
                         try:
-                            links[new_path] = match.group(1)
+                            links[new_path] = match.group(0)  # Group 0 is the entire match
                         except IndexError:
-                            # Handle the case where the group does not exist
                             print(f"No match found for pattern {pattern} in {value}")
             else:
                 links.update(extract_links(value, patterns, new_path))
     elif isinstance(data, list):
         for index, item in enumerate(data):
-            new_path = f"{path}[{index}]"
+            readable_name = get_readable_name(item)
+            item_path = readable_name if readable_name else f"[{index}]"
+            new_path = f"{path} > {item_path}" if path else item_path
             links.update(extract_links(item, patterns, new_path))
 
     return links
-
 
 def check_links(links):
     """
@@ -121,7 +127,8 @@ def check_links(links):
     for path, link in links.items():
         try:
             response = requests.head(link, allow_redirects=True, timeout=5)
-            if response.status_code == 404:
+            if not response.status_code == 200:
+                print(f'Invalid link: {link}\nStatus code: {response.status_code}\n')
                 invalid_links[path] = link
         except requests.RequestException:
             # If there's any request-related error, consider the link as invalid

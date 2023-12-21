@@ -1,6 +1,7 @@
 from reformatter import reformat as re
 from reformatter import functions as fn
 from reformatter import config
+from password import password
 import os
 import json
 
@@ -47,7 +48,7 @@ def main():
                   email,
                   'frankiepaulhadwick@gmail.com',
                   'frankie@ramseysystems.co.uk',
-                  'addt dubr qlnc zcdv')
+                  password)
             
             
         
