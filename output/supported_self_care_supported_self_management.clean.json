@@ -1,0 +1,342 @@
+{
+    "dataset": [
+        {
+            "concept": [
+                {
+                    "type": "group",
+                    "minimumMultiplicity": "0",
+                    "maximumMultiplicity": "1",
+                    "concept": [
+                        {
+                            "type": "group",
+                            "minimumMultiplicity": "0",
+                            "maximumMultiplicity": "*",
+                            "concept": [
+                                {
+                                    "type": "item",
+                                    "minimumMultiplicity": "0",
+                                    "maximumMultiplicity": "1",
+                                    "valueDomain": [
+                                        {
+                                            "type": "text",
+                                            "property": [
+                                                {
+                                                    "maxLength": "150"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "item",
+                                    "minimumMultiplicity": "0",
+                                    "maximumMultiplicity": "1"
+                                },
+                                {
+                                    "type": "item",
+                                    "minimumMultiplicity": "0",
+                                    "maximumMultiplicity": "1",
+                                    "valueDomain": [
+                                        {
+                                            "type": "text",
+                                            "property": [
+                                                {
+                                                    "maxLength": "150"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "item",
+                                    "minimumMultiplicity": "0",
+                                    "maximumMultiplicity": "1",
+                                    "valueDomain": [
+                                        {
+                                            "type": "text",
+                                            "property": [
+                                                {
+                                                    "maxLength": "150"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "item",
+                                    "minimumMultiplicity": "0",
+                                    "maximumMultiplicity": "1"
+                                },
+                                {
+                                    "type": "item",
+                                    "minimumMultiplicity": "0",
+                                    "maximumMultiplicity": "1",
+                                    "valueDomain": [
+                                        {
+                                            "type": "text"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "group",
+                                    "minimumMultiplicity": "0",
+                                    "maximumMultiplicity": "1",
+                                    "concept": [
+                                        {
+                                            "type": "item",
+                                            "minimumMultiplicity": "0",
+                                            "maximumMultiplicity": "1"
+                                        },
+                                        {
+                                            "type": "item",
+                                            "minimumMultiplicity": "0",
+                                            "maximumMultiplicity": "1",
+                                            "valueDomain": [
+                                                {
+                                                    "type": "text",
+                                                    "property": [
+                                                        {
+                                                            "maxLength": "150"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "item",
+                                    "minimumMultiplicity": "0",
+                                    "maximumMultiplicity": "1",
+                                    "valueDomain": [
+                                        {
+                                            "type": "text",
+                                            "property": [
+                                                {
+                                                    "maxLength": "150"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "group",
+                                    "minimumMultiplicity": "0",
+                                    "maximumMultiplicity": "1",
+                                    "concept": [
+                                        {
+                                            "type": "item",
+                                            "minimumMultiplicity": "0",
+                                            "maximumMultiplicity": "1",
+                                            "valueDomain": [
+                                                {
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "item",
+                                            "minimumMultiplicity": "0",
+                                            "maximumMultiplicity": "1",
+                                            "valueDomain": [
+                                                {
+                                                    "type": "datetime",
+                                                    "property": [
+                                                        {
+                                                            "timeStampPrecision": "YMDHM"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "group",
+                                            "minimumMultiplicity": "0",
+                                            "maximumMultiplicity": "1",
+                                            "concept": [
+                                                {
+                                                    "type": "item",
+                                                    "minimumMultiplicity": "0",
+                                                    "maximumMultiplicity": "1",
+                                                    "valueDomain": [
+                                                        {
+                                                            "type": "datetime",
+                                                            "property": [
+                                                                {
+                                                                    "timeStampPrecision": "YMDHM"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "item",
+                                                    "minimumMultiplicity": "0",
+                                                    "maximumMultiplicity": "1",
+                                                    "valueDomain": [
+                                                        {
+                                                            "type": "identifier"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "item",
+                                                    "minimumMultiplicity": "0",
+                                                    "maximumMultiplicity": "1",
+                                                    "valueDomain": [
+                                                        {
+                                                            "type": "text",
+                                                            "property": [
+                                                                {
+                                                                    "maxLength": "150"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "item",
+                                            "minimumMultiplicity": "0",
+                                            "maximumMultiplicity": "1",
+                                            "valueDomain": [
+                                                {
+                                                    "type": "text",
+                                                    "property": [
+                                                        {
+                                                            "maxLength": "150"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "item",
+                                            "minimumMultiplicity": "0",
+                                            "maximumMultiplicity": "1"
+                                        },
+                                        {
+                                            "type": "item",
+                                            "minimumMultiplicity": "0",
+                                            "maximumMultiplicity": "1",
+                                            "valueDomain": [
+                                                {
+                                                    "type": "text",
+                                                    "property": [
+                                                        {
+                                                            "maxLength": "150"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "minimumMultiplicity": "0",
+                    "maximumMultiplicity": "*",
+                    "concept": [
+                        {
+                            "type": "group",
+                            "minimumMultiplicity": "0",
+                            "maximumMultiplicity": "1",
+                            "concept": [
+                                {
+                                    "type": "group",
+                                    "minimumMultiplicity": "0",
+                                    "maximumMultiplicity": "1",
+                                    "concept": [
+                                        {
+                                            "type": "group",
+                                            "minimumMultiplicity": "0",
+                                            "maximumMultiplicity": "1",
+                                            "concept": [
+                                                {
+                                                    "type": "item",
+                                                    "minimumMultiplicity": "0",
+                                                    "maximumMultiplicity": "1"
+                                                },
+                                                {
+                                                    "type": "item",
+                                                    "minimumMultiplicity": "0",
+                                                    "maximumMultiplicity": "1",
+                                                    "valueDomain": [
+                                                        {
+                                                            "type": "string",
+                                                            "property": [
+                                                                {
+                                                                    "maxLength": "150"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "group",
+                                    "minimumMultiplicity": "0",
+                                    "maximumMultiplicity": "*",
+                                    "concept": [
+                                        {
+                                            "type": "group",
+                                            "minimumMultiplicity": "0",
+                                            "maximumMultiplicity": "1",
+                                            "concept": [
+                                                {
+                                                    "type": "item",
+                                                    "minimumMultiplicity": "0",
+                                                    "maximumMultiplicity": "1"
+                                                },
+                                                {
+                                                    "type": "item",
+                                                    "minimumMultiplicity": "0",
+                                                    "maximumMultiplicity": "1",
+                                                    "valueDomain": [
+                                                        {
+                                                            "type": "string",
+                                                            "property": [
+                                                                {
+                                                                    "maxLength": "150"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "group",
+                            "minimumMultiplicity": "0",
+                            "maximumMultiplicity": "1",
+                            "concept": [
+                                {
+                                    "type": "item",
+                                    "minimumMultiplicity": "0",
+                                    "maximumMultiplicity": "1",
+                                    "valueDomain": [
+                                        {
+                                            "type": "text"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

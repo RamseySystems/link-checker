@@ -1,0 +1,15 @@
+{
+    "social_prescribing > person_demographics > location_of_birth > coded_value > valueSets": "https://datadictionary.nhs.uk/data_elements/site_code__of_actual_place_of_delivery_.html",
+    "social_prescribing > person_demographics > gender > implamentationGuidance": "https://www.legislation.gov.uk/ukpga/2004/7/contents.",
+    "social_prescribing > person_demographics > place_of_birth > valueSets": "https://www.datadictionary.nhs.uk/data_dictionary/attributes/c/cou/country_code_de.asp?shownav=1",
+    "social_prescribing > referral_details > referral_details_record_entry > referrer_details > role > valueSets": "https://simplifier.net/ukcore/codesystem-ukcore-sdsjobrolename",
+    "social_prescribing > referral_details > referral_details_record_entry > referrer_details > organisation > coded_value > valueSets": "https://www.datadictionary.nhs.uk/data_dictionary/nhs_business_definitions/o/organisation_data_service_de.asp?shownav=1",
+    "social_prescribing > referral_details > referral_details_record_entry > referral_to > role > valueSets": "https://simplifier.net/HL7FHIRUKCoreR4/UKCore-PractitionerRoleCode",
+    "social_prescribing > contacts_with_professionals > contacts_with_professionals_record_entry > seen_by > role > valueSets": "https://simplifier.net/HL7FHIRUKCoreR4/UKCore-PractitionerRoleCode",
+    "social_prescribing > contacts_with_professionals > contacts_with_professionals_record_entry > responsible_professional > role > valueSets": "https://simplifier.net/HL7FHIRUKCoreR4/UKCore-PractitionerRoleCode",
+    "social_prescribing > contacts_with_professionals > contacts_with_professionals_record_entry > professionals_present > role > valueSets": "https://simplifier.net/HL7FHIRUKCoreR4/UKCore-PractitionerRoleCode",
+    "social_prescribing > services_and_care > services_and_care_record_entry > local_authority > coded_value > valueSets": "https://www.datadictionary.nhs.uk/data_dictionary/attributes/o/org/organisation_code_de.asp?shownav=1",
+    "social_prescribing > care_and_support_plan > needs_concerns_or_problems > goals_and_hopes > actions_and_activities > who > role > valueSets": "https://simplifier.net/HL7FHIRUKCoreR4/UKCore-PractitionerRoleCode",
+    "social_prescribing > care_and_support_plan > agreed_with_person_or_legitimate_representative > role > valueSets": "https://simplifier.net/hl7fhirukcorer4/ukcore-sdsjobrolename-duplicate-2",
+    "social_prescribing > care_and_support_plan > responsibility_for_review > role > valueSets": "https://simplifier.net/HL7FHIRUKCoreR4/UKCore-PractitionerRoleCode"
+}

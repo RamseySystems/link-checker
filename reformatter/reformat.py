@@ -88,11 +88,18 @@ def extract_links(data, patterns, path=''):
         # Returns the 'name' from a dictionary, if available
         return d.get('name') if isinstance(d, dict) and 'name' in d else None
 
+    def should_skip_key(key):
+        # Skip 'dataset' and 'concept' keys in the path
+        return key in ['dataset', 'concept']
+
     links = {}
     if isinstance(data, dict):
         for key, value in data.items():
-            readable_name = get_readable_name(value)
-            new_path = f"{path} > {readable_name}" if path else readable_name if readable_name else key
+            if should_skip_key(key):
+                new_path = path
+            else:
+                readable_name = get_readable_name(value)
+                new_path = f"{path} > {readable_name}" if path and readable_name else f"{path} > {key}" if path else readable_name if readable_name else key
 
             if isinstance(value, str):
                 for pattern in patterns:
@@ -111,7 +118,8 @@ def extract_links(data, patterns, path=''):
             new_path = f"{path} > {item_path}" if path else item_path
             links.update(extract_links(item, patterns, new_path))
 
-    return links
+    # Remove leading and trailing '>'
+    return {k.strip(' >'): v for k, v in links.items()}
 
 def check_links(links):
     """

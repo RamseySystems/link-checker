@@ -1,6 +1,7 @@
 import html
 import re
 import json
+import datetime
 from copy import copy
 import openpyxl
 from jsonschema import validate
@@ -168,7 +169,7 @@ def send_email(subject, content, to_email, from_email, password):
 
 
 # a function to render a jinja template
-def render_email(template_path, template_name, content, text_body):
+def render_email(template_path, template_name, content, total_link_count, invalid_link_count, valid_link_count):
     # create jinja environment
     env = Environment(loader=FileSystemLoader(template_path))
 
@@ -176,4 +177,4 @@ def render_email(template_path, template_name, content, text_body):
     template = env.get_template(template_name)
 
     # render template
-    return template.render(standards=content)
+    return template.render(standards=content, total_link_count=total_link_count, invalid_link_count=invalid_link_count, valid_link_count=valid_link_count, date=datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"))

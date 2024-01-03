@@ -39,6 +39,12 @@
     </style>
 </head>
 <body>
+    <h1>Link Checker Report</h1>
+    <p>Report generated on {{ date }}</p>
+    <p>Checked {{ total_link_count }} links</p>
+    <p>Found {{ invalid_link_count }} broken links</p>
+    <p>Found {{ valid_link_count }} working links</p>
+    <br>
     <div class="container">
         {% for standard, paths in standards.items() %}
             <h2>{{ standard }}</h2>

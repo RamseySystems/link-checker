@@ -1,0 +1,6 @@
+{
+    "message_back_to_gp_and_referrer > person_demographics > gender > implamentationGuidance": "https://www.legislation.gov.uk/ukpga/2004/7/contents.",
+    "message_back_to_gp_and_referrer > care_and_support_plan > needs_concerns_or_problems > goals_and_hopes > actions_and_activities > who > role > valueSets": "https://simplifier.net/HL7FHIRUKCoreR4/UKCore-PractitionerRoleCode",
+    "message_back_to_gp_and_referrer > care_and_support_plan > agreed_with_person_or_legitimate_representative > role > valueSets": "https://simplifier.net/hl7fhirukcorer4/ukcore-sdsjobrolename-duplicate-2",
+    "message_back_to_gp_and_referrer > care_and_support_plan > responsibility_for_review > role > valueSets": "https://simplifier.net/HL7FHIRUKCoreR4/UKCore-PractitionerRoleCode"
+}
