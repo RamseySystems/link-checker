@@ -6,8 +6,10 @@ import os
 import requests
 import json
 import datetime
+import functions_framework
 
-def link_checker():
+@functions_framework.http
+def link_checker(request):
     CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join(CURRENT_DIR, 'app_key.json')
     # create a file in GCP bucket to use for logging

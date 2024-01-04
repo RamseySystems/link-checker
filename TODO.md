@@ -1,4 +1,4 @@
 TODO
 
-- Get the useful patha swell for context
+- get working in gcp functions
 
