@@ -45,22 +45,27 @@
     <p>Found {{ invalid_link_count }} broken links</p>
     <p>Found {{ valid_link_count }} working links</p>
     <br>
-    <div class="container">
-        {% for standard, paths in standards.items() %}
-            <h2>{{ standard }}</h2>
-            <table>
-                <tr>
-                    <th>Path</th>
-                    <th>URL</th>
-                </tr>
-                {% for path, url in paths.items() %}
-                    <tr>
-                        <td>{{ path }}</td>
-                        <td><a href="{{ url }}">{{ url }}</a></td>
-                    </tr>
-                {% endfor %}
-            </table>
-        {% endfor %}
-    </div>
+    
+    {% if standards|length > 0 %} <!-- Check if standards has any entries -->
+        <div class="container">
+            {% for standard, paths in standards.items() %}
+                {% if paths %} <!-- Check if paths is not empty -->
+                    <h2>{{ standard }}</h2>
+                    <table>
+                        <tr>
+                            <th>Path</th>
+                            <th>URL</th>
+                        </tr>
+                        {% for path, url in paths.items() %}
+                            <tr>
+                                <td>{{ path }}</td>
+                                <td><a href="{{ url }}">{{ url }}</a></td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
 </body>
 </html>

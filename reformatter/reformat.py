@@ -84,6 +84,9 @@ def validate(schema: dict, instance: dict):
 
 
 def extract_links(data, patterns, path=''):
+    errors = []
+    links = {}
+
     def get_readable_name(d):
         # Returns the 'name' from a dictionary, if available
         return d.get('name') if isinstance(d, dict) and 'name' in d else None
@@ -92,34 +95,50 @@ def extract_links(data, patterns, path=''):
         # Skip 'dataset' and 'concept' keys in the path
         return key in ['dataset', 'concept']
 
-    links = {}
-    if isinstance(data, dict):
-        for key, value in data.items():
-            if should_skip_key(key):
-                new_path = path
-            else:
-                readable_name = get_readable_name(value)
-                new_path = f"{path} > {readable_name}" if path and readable_name else f"{path} > {key}" if path else readable_name if readable_name else key
+    if not isinstance(data, (dict, list)):
+        errors.append(f"Invalid data type: {type(data)}")
+        return links, errors
 
-            if isinstance(value, str):
-                for pattern in patterns:
-                    match = re.search(pattern, value)
-                    if match:
+    if not patterns:
+        errors.append("No patterns provided for matching")
+        return links, errors
+
+    try:
+        if isinstance(data, dict):
+            for key, value in data.items():
+                if should_skip_key(key):
+                    new_path = path
+                else:
+                    readable_name = get_readable_name(value)
+                    new_path = f"{path} > {readable_name}" if path and readable_name else f"{path} > {key}" if path else readable_name if readable_name else key
+
+                if isinstance(value, str):
+                    for pattern in patterns:
                         try:
-                            links[new_path] = match.group(0)  # Group 0 is the entire match
-                        except IndexError:
-                            print(f"No match found for pattern {pattern} in {value}")
-            else:
-                links.update(extract_links(value, patterns, new_path))
-    elif isinstance(data, list):
-        for index, item in enumerate(data):
-            readable_name = get_readable_name(item)
-            item_path = readable_name if readable_name else f"[{index}]"
-            new_path = f"{path} > {item_path}" if path else item_path
-            links.update(extract_links(item, patterns, new_path))
+                            match = re.search(pattern, value)
+                            if match:
+                                links[new_path] = match.group(0)  # Group 0 is the entire match
+                        except re.error as regex_error:
+                            errors.append(f"Regex error: {regex_error} for pattern {pattern}")
+                else:
+                    sub_links, sub_errors = extract_links(value, patterns, new_path)
+                    links.update(sub_links)
+                    errors.extend(sub_errors)
+
+        elif isinstance(data, list):
+            for index, item in enumerate(data):
+                readable_name = get_readable_name(item)
+                item_path = readable_name if readable_name else f"[{index}]"
+                new_path = f"{path} > {item_path}" if path else item_path
+                sub_links, sub_errors = extract_links(item, patterns, new_path)
+                links.update(sub_links)
+                errors.extend(sub_errors)
+    except Exception as e:
+        errors.append(f"Unexpected error: {e}")
 
     # Remove leading and trailing '>'
-    return {k.strip(' >'): v for k, v in links.items()}
+    cleaned_links = {k.strip(' >'): v for k, v in links.items()}
+    return cleaned_links, errors
 
 def check_links(links):
     """
@@ -129,17 +148,19 @@ def check_links(links):
     links (dict): A dictionary with paths as keys and links as values.
 
     Returns:
-    dict: A dictionary of invalid links with their corresponding paths.
+    Tuple[dict, list]: A tuple containing a dictionary of invalid links with their corresponding paths,
+                        and a list of errors encountered.
     """
     invalid_links = {}
+    errors = []
     for path, link in links.items():
         try:
             response = requests.head(link, allow_redirects=True, timeout=5)
-            if not response.status_code == 200:
-                print(f'Invalid link: {link}\nStatus code: {response.status_code}\n')
+            if response.status_code != 200:
                 invalid_links[path] = link
-        except requests.RequestException:
-            # If there's any request-related error, consider the link as invalid
+        except requests.RequestException as e:
+            # If there's any request-related error, consider the link as invalid and log the error
             invalid_links[path] = link
+            errors.append(f"Error with link {link}: {str(e)}")
 
-    return invalid_links
+    return invalid_links, errors

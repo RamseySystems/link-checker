@@ -1,3 +1,4 @@
 password.py
 /venv
 .env
+app_key.json
