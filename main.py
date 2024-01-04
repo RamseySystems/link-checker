@@ -4,26 +4,32 @@ from reformatter import config
 import os
 import requests
 import json
-
+import datetime
 
 def main():
     CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
     #OUTPUT_DIR = f'{CURRENT_DIR}/output'
     
+    log = {}
     standards = {}
     invalid_link_count = 0
     valid_link_count = 0
     total_link_count = 0
     
+    log[datetime.now().strftime('%Y-%m-%d %H:%M:%S')] = "Starting link checker..."
     
     for url in config.endpoints:
         
+        log[datetime.now().strftime('%Y-%m-%d %H:%M:%S')] = f"Pulling JSON from {url}..."
+        
         response = requests.get(url)
         if response.status_code != 200:
+            log[datetime.now().strftime('%Y-%m-%d %H:%M:%S')] = f'Error pulling: {response.status_code}'
             print(f'Error: {response.status_code}')
             continue
         
         data = response.json()
+        log[datetime.now().strftime('%Y-%m-%d %H:%M:%S')] = f"JSON pulled from {url}..."
         
         if type(data['dataset'][0]['name']) == str:
             standard_name = data['dataset'][0]['name']
@@ -32,9 +38,12 @@ def main():
         elif type(data['dataset'][0]['name'][0]['#text']) == str:
             standard_name = data['dataset'][0]['name'][0]['#text']
         
+        log[datetime.now().strftime('%Y-%m-%d %H:%M:%S')] = f"Reformatting {standard_name}..."
+        
         try:
             standards[standard_name] = {}
         except TypeError:
+            log[datetime.now().strftime('%Y-%m-%d %H:%M:%S')] = f'Error: {standard_name}'
             print(f'Error: {standard_name}')
             continue
         
