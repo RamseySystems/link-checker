@@ -1,10 +1,12 @@
 import html
+from io import BytesIO
 import re
 import json
 import datetime
 from copy import copy
 import openpyxl
 from jsonschema import validate
+from google.cloud import storage
 from jsonschema import Draft202012Validator
 import smtplib
 from jinja2 import Template, Environment, FileSystemLoader
@@ -178,3 +180,60 @@ def render_email(template_path, template_name, content, total_link_count, invali
 
     # render template
     return template.render(standards=content, total_link_count=total_link_count, invalid_link_count=invalid_link_count, valid_link_count=valid_link_count, date=datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
+
+
+def get_excel_from_gcloud(bucket_name: str, excel_name: str) -> openpyxl.Workbook:
+    '''
+    A function that will download the excel data from Google cloud without storing it locally
+    
+    :param bucket_name: the name of the bucket to download from
+    :param excel_name: the name of the excel file to download
+    :return: the excel file as an openpyxl workbook object
+    '''
+    client = storage.Client()
+    bucket = client.get_bucket(bucket_name)
+    blob = bucket.blob(excel_name)
+    byte_data = BytesIO()
+    blob.download_to_file(byte_data)
+    byte_data.seek(0)
+    wb = openpyxl.load_workbook(filename=byte_data, data_only=True)
+    
+    return wb
+
+def find_cell_location(sheet, cell_value: str) -> tuple:
+    '''
+    Find the coordinates of a cell in a worksheet and return as a tuple.
+
+    :param sheet: The sheet to search.
+    :param cell_value: The text to search for in the sheet.
+    :return: A tuple containing the row and column coordinates.
+    '''
+    row_index = 1
+    for row in sheet.iter_rows():
+        cell_index = 1
+        for cell in row:
+            value = str(cell.value).lower().strip()
+            if value == cell_value.lower():
+                return row_index, cell_index
+            cell_index += 1
+        row_index += 1
+    raise ValueError(f"Missing headings in excel file {sheet.sheet_name}")
+
+def get_endpoints_from_excel(workbook: openpyxl.Workbook) -> list:
+    '''
+    A function that will get the endpoints from an excel file
+    
+    :param workbook: the workbook to get the endpoints from
+    :return: a list of endpoints
+    '''
+    ws = workbook['Sheet1']
+    
+    endpoint_heading_cell = find_cell_location(ws, 'Endpoints')
+    
+    endpoints = []
+    for row in ws.iter_rows(min_row=endpoint_heading_cell[0]+1, min_col=endpoint_heading_cell[1], max_col=endpoint_heading_cell[1]):
+        for cell in row:
+            if cell.value:
+                endpoints.append(cell.value)
+    
+    return endpoints
