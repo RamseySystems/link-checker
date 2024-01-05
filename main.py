@@ -11,18 +11,13 @@ import functions_framework
 @functions_framework.http
 def link_checker(request):
     CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
-    #os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join(CURRENT_DIR, 'app_key.json')
-    # create a file in GCP bucket to use for logging
-    #client = storage.Client()
-    #bucket = client.get_bucket('sites.ramseysystems.co.uk')
+
+    # send emails
+    send_emails = ['frankiepaulhadwick@gmail.com', 'support@theprsb.org']
     
     # get endpoints excel from GCP
     endpoints_wb = fn.get_excel_from_gcloud('link_checker', 'EndpointsForLinkChecking.xlsx')
     endpoints = fn.get_endpoints_from_excel(endpoints_wb)
-    
-    # get blob for logging
-    #blob = bucket.blob('link_checker.log')
-    #blob.upload_from_string('')
     
     standards = {}
     invalid_link_count = 0
@@ -79,12 +74,12 @@ def link_checker(request):
                             total_link_count,
                             invalid_link_count,
                             valid_link_count)
-    
-    fn.send_email('URL Report',
-                  email,
-                  'frankiepaulhadwick@gmail.com',
-                  'frankie@ramseysystems.co.uk',
-                  os.environ.get('EMAIL_PASSWORD'))
+    for to_email in send_emails:
+        fn.send_email('URL Report',
+                    email,
+                    to_email,
+                    'frankie@ramseysystems.co.uk',
+                    os.environ.get('EMAIL_PASSWORD'))
     
     return email
             
